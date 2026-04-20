@@ -153,7 +153,7 @@ function Store({ mode }: { mode?: 'home' | 'catalog' | 'deals' | 'section' }) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-32 sm:pb-20">
+    <div className="min-h-screen bg-gray-50 pb-20">
       <SEO 
         title={view === 'home' ? '' : (view === 'catalog' ? (lang === 'ar' ? 'الكتالوج' : 'Catalog') : (view === 'section' ? (lang === 'ar' ? `${selectedCategory}` : `${selectedCategory}`) : (lang === 'ar' ? 'العروض' : 'Deals')))}
         description={t(content.metaDescription)}
@@ -328,26 +328,6 @@ function Store({ mode }: { mode?: 'home' | 'catalog' | 'deals' | 'section' }) {
         onClose={() => setIsLoginOpen(false)} 
       />
 
-      {/* Floating Deals Button */}
-      {view !== 'deals' && (
-        <motion.button
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={openDeals}
-          className="fixed bottom-10 left-6 z-[150] bg-brand-red text-white flex flex-col items-center justify-center p-4 rounded-3xl shadow-2xl shadow-brand-red/30 cursor-pointer animate-pulse-slow group"
-        >
-          <span className="text-2xl mb-1 group-hover:rotate-12 transition-transform">🔥</span>
-          <span className="text-[10px] font-black uppercase tracking-widest">
-            {lang === 'ar' ? 'العروض' : 'Deals'}
-          </span>
-          <div className="absolute -top-1 -right-1 bg-white text-brand-red text-[8px] font-black px-1.5 py-0.5 rounded-full shadow-sm">
-            %
-          </div>
-        </motion.button>
-      )}
-
       {/* Policies Modal */}
       {activePolicy && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
@@ -419,6 +399,7 @@ function NavbarWrapper() {
         onCatalogOpen={(cat) => navigate('/catalog', { state: { category: cat } })}
         onDealsOpen={() => navigate('/deals')}
       />
+      <BottomNav onCartOpen={() => setIsCartOpen(true)} onLoginOpen={() => setIsLoginOpen(true)} />
       <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
       <LoginForm isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
     </>
