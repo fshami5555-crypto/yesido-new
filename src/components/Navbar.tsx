@@ -88,7 +88,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onCartOpen, onLoginOpen, onLogoC
 
           {/* Actions */}
           <div className={`flex items-center gap-2 sm:gap-4 ${lang === 'ar' ? 'flex-row' : 'flex-row-reverse'}`}>
-            <div className={`hidden sm:flex items-center bg-gray-50 rounded-full px-4 py-2 border border-gray-100 group focus-within:border-brand-red transition-all ${lang === 'ar' ? 'flex-row' : 'flex-row-reverse'}`}>
+            <div className={`hidden md:flex items-center bg-gray-50 rounded-full px-4 py-2 border border-gray-100 group focus-within:border-brand-red transition-all ${lang === 'ar' ? 'flex-row' : 'flex-row-reverse'}`}>
               <input 
                 type="text" 
                 placeholder={lang === 'ar' ? 'ابحث عن منتج...' : 'Search...'} 
@@ -100,19 +100,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onCartOpen, onLoginOpen, onLogoC
             {/* Language Switcher */}
             <button 
               onClick={() => setLang(lang === 'ar' ? 'en' : 'ar')}
-              className="flex items-center gap-2 p-2 bg-gray-50 hover:bg-gray-100 rounded-xl transition-all font-bold text-xs"
+              className="flex items-center gap-2 p-2 sm:p-2.5 bg-gray-50 hover:bg-gray-100 rounded-xl transition-all font-bold text-[10px] sm:text-xs"
             >
               <Globe size={18} className="text-brand-red" />
-              <span className="hidden sm:inline">{lang === 'ar' ? 'English' : 'العربية'}</span>
+              <span className="hidden xs:inline">{lang === 'ar' ? 'EN' : 'AR'}</span>
             </button>
             
             {user ? (
-              <div className={`flex items-center gap-2 ${lang === 'ar' ? 'flex-row' : 'flex-row-reverse'}`}>
+              <div className={`hidden sm:flex items-center gap-2 ${lang === 'ar' ? 'flex-row' : 'flex-row-reverse'}`}>
                 <span 
                   onClick={() => {
                     if (user.email === 'admin@yesido.com') window.dispatchEvent(new CustomEvent('show-admin'));
                   }}
-                  className={`hidden md:inline text-xs font-bold text-gray-500 cursor-pointer hover:text-brand-red`}
+                  className={`hidden lg:inline text-xs font-bold text-gray-500 cursor-pointer hover:text-brand-red`}
                 >
                   {user.email}
                 </span>
@@ -127,7 +127,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onCartOpen, onLoginOpen, onLogoC
             ) : (
               <button 
                 onClick={onLoginOpen}
-                className="p-2 text-gray-700 hover:text-brand-red transition-colors"
+                className="hidden sm:flex p-2 text-gray-700 hover:text-brand-red transition-colors"
                 title={lang === 'ar' ? 'تسجيل الدخول' : 'Login'}
               >
                 <User size={24} />
@@ -136,7 +136,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onCartOpen, onLoginOpen, onLogoC
             
             <button 
               onClick={onCartOpen}
-              className="relative p-2 text-gray-700 hover:text-brand-red transition-colors"
+              className="hidden sm:flex relative p-2 text-gray-700 hover:text-brand-red transition-colors"
             >
               <ShoppingBag size={24} />
               {totalItems > 0 && (
