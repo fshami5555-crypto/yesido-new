@@ -12,7 +12,7 @@ export const FlashOfferSection: React.FC = () => {
   if (flashProducts.length === 0) return null;
 
   return (
-    <section className="py-20 bg-brand-dark overflow-hidden">
+    <section className="py-20 bg-[#1A1A1A] overflow-hidden">
       <div className="container mx-auto px-4">
         <div className={`flex flex-col md:flex-row items-center justify-between mb-12 gap-6 ${lang === 'ar' ? 'flex-row' : 'flex-row-reverse'}`}>
           <div className={`flex items-center gap-4 ${lang === 'ar' ? 'text-right' : 'text-left flex-row-reverse'}`}>

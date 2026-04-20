@@ -19,13 +19,13 @@ export const Hero: React.FC<HeroProps> = ({ onCatalogOpen }) => {
     : content.hero;
 
   return (
-    <div className="relative overflow-hidden bg-brand-dark min-h-[650px] flex items-center py-16 sm:py-0">
+    <div className="relative overflow-hidden bg-[#1A1A1A] min-h-[650px] flex items-center py-16 sm:py-0">
       {/* Background Glow/Image Layer */}
       <AnimatePresence mode="wait">
         <motion.div 
           key={activeHeroKey || 'bg-default'}
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.15 }}
+          animate={{ opacity: 0.2 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8 }}
           className="absolute inset-0 z-0 pointer-events-none"
@@ -35,7 +35,7 @@ export const Hero: React.FC<HeroProps> = ({ onCatalogOpen }) => {
             className="w-full h-full object-cover blur-3xl scale-110"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/20 via-brand-dark/60 to-brand-dark" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-[#1A1A1A]/80 to-[#1A1A1A]" />
         </motion.div>
       </AnimatePresence>
 

@@ -59,7 +59,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onCartOpen, onLoginOpen, onLogoC
           </div>
 
           {/* Desktop Nav */}
-          <div className={`hidden lg:flex items-center gap-8 text-sm font-medium text-gray-700 ${lang === 'ar' ? 'flex-row' : 'flex-row-reverse'}`}>
+          <div className={`hidden lg:flex items-center gap-8 text-sm font-bold text-gray-800 ${lang === 'ar' ? 'flex-row' : 'flex-row-reverse'}`}>
             <Link 
               to="/"
               onClick={() => setHeroKey(null)}
