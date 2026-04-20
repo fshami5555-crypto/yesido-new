@@ -12,6 +12,7 @@ import { FlashOfferSection } from './components/FlashOfferSection';
 import { AdminDashboard } from './components/AdminDashboard';
 import { LoadingScreen } from './components/LoadingScreen';
 import { CatalogView } from './components/CatalogView';
+import { BottomNav } from './components/BottomNav';
 import { PRODUCTS } from './data';
 import { db } from './firebase';
 import { collection, getDocs } from 'firebase/firestore';
@@ -166,6 +167,8 @@ function Store({ mode }: { mode?: 'home' | 'catalog' | 'deals' | 'section' }) {
         onDealsOpen={openDeals}
       />
 
+      <BottomNav onCartOpen={() => setIsCartOpen(true)} onLoginOpen={() => setIsLoginOpen(true)} />
+
       {(view === 'home' || view === 'section') ? (
         <>
           <Hero onCatalogOpen={openCatalog} />
@@ -254,7 +257,7 @@ function Store({ mode }: { mode?: 'home' | 'catalog' | 'deals' | 'section' }) {
               </div>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-8">
               {filteredProducts.slice(0, 10).map(product => (
                 <ProductCard key={product.id} product={product} />
               ))}

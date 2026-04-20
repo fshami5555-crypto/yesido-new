@@ -19,7 +19,7 @@ export const Hero: React.FC<HeroProps> = ({ onCatalogOpen }) => {
     : content.hero;
 
   return (
-    <div className="relative overflow-hidden bg-[#1A1A1A] min-h-[650px] flex items-center py-16 sm:py-0">
+    <div className="relative overflow-hidden bg-[#1A1A1A] min-h-[500px] sm:min-h-[650px] flex items-center py-10 sm:py-0">
       {/* Background Glow/Image Layer */}
       <AnimatePresence mode="wait">
         <motion.div 
@@ -47,18 +47,18 @@ export const Hero: React.FC<HeroProps> = ({ onCatalogOpen }) => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: lang === 'ar' ? -50 : 50 }}
             transition={{ duration: 0.5 }}
-            className="grid lg:grid-cols-2 gap-12 items-center"
+            className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center"
           >
-            <div className={`space-y-6 ${lang === 'ar' ? 'text-right order-2 lg:order-1' : 'text-left'}`}>
+            <div className={`space-y-4 sm:space-y-6 ${lang === 'ar' ? 'text-right order-2 lg:order-1' : 'text-left'}`}>
               <motion.span 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="inline-block bg-brand-red text-white px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest shadow-lg shadow-brand-red/30"
+                className="inline-block bg-brand-red text-white px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-black uppercase tracking-widest shadow-lg shadow-brand-red/30"
               >
                 {t(activeContent.badge)}
               </motion.span>
-              <h1 className="text-4xl sm:text-7xl font-black text-white leading-[1.1]">
+              <h1 className="text-3xl sm:text-7xl font-black text-white leading-[1.2] sm:leading-[1.1]">
                 {t(activeContent.title).split('Yesido').map((part, i) => (
                   <span key={i}>
                     {part}
@@ -66,20 +66,20 @@ export const Hero: React.FC<HeroProps> = ({ onCatalogOpen }) => {
                   </span>
                 ))}
               </h1>
-              <p className="text-gray-400 text-xl leading-relaxed max-w-xl">
+              <p className="text-gray-400 text-base sm:text-xl leading-relaxed max-w-xl">
                 {t(activeContent.subtitle)}
               </p>
-              <div className={`flex flex-wrap items-center gap-4 pt-6 ${lang === 'ar' ? 'justify-end' : 'justify-start'}`}>
+              <div className={`flex flex-col xs:flex-row items-stretch xs:items-center gap-3 sm:gap-4 pt-4 sm:pt-6 ${lang === 'ar' ? 'xs:justify-end' : 'xs:justify-start'}`}>
                 <Link 
                   to="/catalog"
-                  className="bg-brand-red text-white px-10 py-5 rounded-2xl font-black text-lg flex items-center gap-2 hover:bg-white hover:text-brand-red transition-all shadow-2xl shadow-brand-red/40 hover:-translate-y-1"
+                  className="bg-brand-red text-white px-6 sm:px-10 py-4 sm:py-5 rounded-2xl font-black text-base sm:text-lg flex items-center justify-center gap-2 hover:bg-white hover:text-brand-red transition-all shadow-2xl shadow-brand-red/40 hover:-translate-y-1"
                 >
                   <span>{t(activeContent.cta)}</span>
-                  {lang === 'ar' ? <ArrowLeft size={24} /> : <ChevronRight size={24} />}
+                  {lang === 'ar' ? <ArrowLeft size={20} /> : <ChevronRight size={20} />}
                 </Link>
                 <Link 
                   to="/catalog"
-                  className="border border-white/20 text-white px-10 py-5 rounded-2xl font-bold hover:bg-white/10 transition-all font-sans"
+                  className="border border-white/20 text-white px-6 sm:px-10 py-4 sm:py-5 rounded-2xl font-bold flex items-center justify-center hover:bg-white/10 transition-all font-sans text-sm sm:text-base"
                 >
                   {lang === 'ar' ? 'عرض الكتالوج' : 'View Catalog'}
                 </Link>

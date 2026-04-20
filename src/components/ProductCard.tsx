@@ -25,7 +25,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <motion.div 
       whileHover={{ y: -5 }}
-      className={`bg-white rounded-2xl border ${isFlash ? 'border-brand-red ring-1 ring-brand-red/20' : 'border-gray-100'} overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group relative`}
+      className={`bg-white rounded-2xl border ${isFlash ? 'border-brand-red ring-1 ring-brand-red/20' : 'border-gray-100'} overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group relative h-full`}
     >
       <Link to={`/product/${product.id}`} className="block relative aspect-square bg-gray-50 overflow-hidden">
         <img 
@@ -33,63 +33,58 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           alt={t(product.name)}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
-        <div className={`absolute top-3 flex flex-col gap-2 items-end ${lang === 'ar' ? 'right-3' : 'left-3'}`}>
-          <span className="bg-brand-red text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">
+        <div className={`absolute top-2 sm:top-3 flex flex-col gap-1 sm:gap-2 items-end ${lang === 'ar' ? 'right-2 sm:right-3' : 'left-1 sm:left-3'}`}>
+          <span className="bg-brand-red text-white text-[8px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full uppercase tracking-wider">
             {t(product.category)}
           </span>
           {hasDiscount && (
-            <span className="bg-orange-500 text-white text-[10px] font-bold px-2 py-1 rounded-full">
-              {lang === 'ar' ? `خصم ${discountPercentage}%` : `${discountPercentage}% OFF`}
+            <span className="bg-orange-500 text-white text-[8px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full">
+              {lang === 'ar' ? `-${discountPercentage}%` : `-${discountPercentage}%`}
             </span>
           )}
           {isFlash && (
-            <div className="bg-white/90 backdrop-blur-sm border border-brand-red rounded-full px-2 py-1 flex items-center gap-1.5 shadow-sm">
-              <Flame size={12} className="text-brand-red animate-pulse" />
-              <CountdownTimer expiresAt={product.flashOffer!.expiresAt} />
+            <div className="bg-white/90 backdrop-blur-sm border border-brand-red rounded-full px-1.5 sm:px-2 py-0.5 sm:py-1 flex items-center gap-1 shadow-sm">
+              <Flame size={10} className="text-brand-red animate-pulse sm:w-3 sm:h-3" />
+              <div className="text-[8px] sm:text-[10px]">
+                <CountdownTimer expiresAt={product.flashOffer!.expiresAt} />
+              </div>
             </div>
           )}
         </div>
         {product.stock <= 5 && product.stock > 0 && (
-          <div className="absolute bottom-2 left-2 right-2">
-            <div className="bg-orange-100 text-orange-600 text-[10px] font-black py-1 px-2 rounded-lg text-center backdrop-blur-sm border border-orange-200">
-              {lang === 'ar' ? `بقي ${product.stock} فقط في المخزون!` : `Only ${product.stock} left in stock!`}
+          <div className="absolute bottom-1 sm:bottom-2 left-1 sm:left-2 right-1 sm:right-2">
+            <div className="bg-orange-100/90 text-orange-600 text-[8px] sm:text-[10px] font-black py-0.5 sm:py-1 px-1 sm:px-2 rounded-lg text-center backdrop-blur-sm border border-orange-200">
+              {lang === 'ar' ? `بقي ${product.stock}` : `${product.stock} left`}
             </div>
-          </div>
-        )}
-        {product.stock === 0 && (
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] flex items-center justify-center">
-            <span className="bg-white text-black px-4 py-2 rounded-xl font-black text-sm uppercase tracking-widest">
-              {lang === 'ar' ? 'نفذ المخزون' : 'Sold Out'}
-            </span>
           </div>
         )}
       </Link>
       
-      <div className={`p-5 flex flex-col flex-1 ${lang === 'ar' ? 'text-right' : 'text-left'}`}>
-        <Link to={`/product/${product.id}`} className="hover:text-brand-red transition-colors">
-          <h3 className="text-gray-800 font-bold text-lg mb-1 line-clamp-1">{t(product.name)}</h3>
+      <div className={`p-3 sm:p-5 flex flex-col flex-1 ${lang === 'ar' ? 'text-right' : 'text-left'}`}>
+        <Link to={`/product/${product.id}`} className="hover:text-brand-red transition-colors mb-1">
+          <h3 className="text-gray-800 font-bold text-sm sm:text-lg line-clamp-2 sm:line-clamp-1 h-10 sm:h-auto">{t(product.name)}</h3>
         </Link>
-        <p className="text-gray-400 text-xs mb-3 font-mono">Yesido Accessory</p>
-        <p className="text-gray-600 text-sm mb-4 line-clamp-2 h-10 leading-relaxed">
+        <p className="hidden sm:block text-gray-400 text-xs mb-3 font-mono">Yesido Accessory</p>
+        <p className="hidden sm:block text-gray-600 text-sm mb-4 line-clamp-2 h-10 leading-relaxed">
           {t(product.description)}
         </p>
         
-        <div className={`mt-auto flex items-center justify-between ${lang === 'ar' ? 'flex-row' : 'flex-row-reverse'}`}>
+        <div className={`mt-auto flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2 ${lang === 'ar' ? 'xs:flex-row' : 'xs:flex-row-reverse'}`}>
           <div className="flex flex-col">
-            <span className="text-brand-red font-bold text-xl">{currentPrice.toFixed(2)} {lang === 'ar' ? 'د.أ' : 'JOD'}</span>
+            <span className="text-brand-red font-black text-base sm:text-xl">{currentPrice.toFixed(2)} <span className="text-[10px] sm:text-xs font-bold">{lang === 'ar' ? 'د.أ' : 'JOD'}</span></span>
             {hasDiscount && (
-              <span className="text-gray-400 text-xs line-through">{originalPrice.toFixed(2)} {lang === 'ar' ? 'د.أ' : 'JOD'}</span>
+              <span className="text-gray-400 text-[10px] sm:text-xs line-through">{originalPrice.toFixed(2)}</span>
             )}
           </div>
           
           <button 
             onClick={() => product.stock > 0 && addToCart(product)}
             disabled={product.stock === 0}
-            className="bg-brand-red text-white p-3 rounded-xl hover:bg-brand-dark transition-colors shadow-lg shadow-brand-red/20 active:scale-95 disabled:opacity-50 disabled:grayscale"
+            className="w-full xs:w-auto bg-brand-red text-white p-2.5 sm:p-3 rounded-xl hover:bg-brand-dark transition-colors shadow-lg shadow-brand-red/20 active:scale-95 disabled:opacity-50 disabled:grayscale"
           >
-            <div className="flex items-center gap-2 font-bold px-1">
-               <Plus size={18} />
-               <span>{lang === 'ar' ? 'أضف' : 'Add'}</span>
+            <div className="flex items-center justify-center gap-1.5 font-bold px-1">
+               <Plus size={16} />
+               <span className="text-xs sm:text-sm">{lang === 'ar' ? 'أضف' : 'Add'}</span>
             </div>
           </button>
         </div>
